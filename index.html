@@ -62,7 +62,7 @@
     .navlink:after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width .3s ease}
     .navlink:hover:after{width:100%}
     .pill{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:60;padding:24px}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-center;z-index:60;padding:24px}
     .lightbox.active{display:flex}
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -70,12 +70,28 @@
 </head>
 <body x-data="site()">
 
-  <!-- Header calqué sur l'image -->
+  <!-- Header avec intégration du logo Instagram basé sur image_1917c1.png -->
   <header class="fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
       <div class="glass rounded-full px-6 py-3 flex items-center justify-between gap-4">
         <div class="flex items-center gap-3 min-w-0">
-          <div class="w-9 h-9 rounded-full gold-bg flex items-center justify-center text-black font-black text-sm shrink-0">S</div>
+          <!-- Logo fidèle reproduisant fidèlement l'avatar de l'image_1917c1.png -->
+          <div class="w-11 h-11 rounded-full bg-[#ebd9c1] border border-[#7d6e59]/30 flex items-center justify-center p-0.5 shrink-0 shadow-inner">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-[#5c503f]" fill="currentColor">
+              <!-- Haut-de-forme -->
+              <path d="M38 42 h24 v4 h-24 z M42 22 h16 v20 h-16 z" />
+              <!-- Ligne sous le chapeau -->
+              <line x1="30" y1="49" x2="70" y2="49" stroke="#5c503f" stroke-width="2" />
+              <!-- Texte Le Sterling -->
+              <text x="50" y="62" font-family="'Inter', sans-serif" font-weight="800" font-size="11" text-anchor="middle" letter-spacing="0.5">LE STERLING</text>
+              <!-- Texte Bar & Restaurant -->
+              <text x="50" y="71" font-family="'Inter', sans-serif" font-weight="500" font-size="5" text-anchor="middle" letter-spacing="0.2">BAR & RESTAURANT</text>
+              <!-- Ligne sous le texte -->
+              <line x1="35" y1="76" x2="65" y2="76" stroke="#5c503f" stroke-width="1" />
+              <!-- Moustache -->
+              <path d="M44 83 c2-3 5-3 6-1 c1-2 4-2 6 1 c1-1 2-1 2 0 c0 2-4 3-5 1 c-1 2-2 2-3 0 c-1 2-2 2-3 0 c-1 2-5 1-5-1 c0-1 1-1 2 0 z" />
+            </svg>
+          </div>
           <div class="min-w-0">
             <div class="font-display text-lg leading-none tracking-wide">Le Sterling</div>
             <div class="text-[9px] uppercase tracking-[.25em] text-white/50 truncate mt-0.5">Restaurant • Bar • Lounge</div>
@@ -96,7 +112,7 @@
   </header>
 
   <main>
-    <!-- Section Hero conforme à l'image image_182b3b.jpg -->
+    <!-- Section Hero -->
     <section class="hero min-h-screen flex items-center pt-28 pb-16">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div class="grid lg:grid-cols-12 gap-12 items-center">
@@ -118,7 +134,7 @@
             </div>
           </div>
 
-          <!-- Bloc de Droite : Carte d'informations vitrée (Glassmorphism) -->
+          <!-- Bloc de Droite : Carte d'informations vitrée (Ambiance sportive supprimée) -->
           <div class="lg:col-span-5 reveal">
             <div class="glass rounded-3xl p-6 sm:p-8 shadow-2xl">
               <h2 class="text-xs uppercase tracking-[.25em] text-white/50 mb-6 font-semibold">Informations clés</h2>
@@ -138,7 +154,7 @@
                 </div>
                 <div class="flex justify-between items-center py-1 pb-4">
                   <span class="text-white/50">Ambiance</span>
-                  <span class="text-white font-medium text-xs">Gastronomie · Lounge · Sport</span>
+                  <span class="text-white font-medium text-xs">Gastronomie · Lounge</span>
                 </div>
               </div>
 
@@ -166,7 +182,7 @@
       </div>
     </section>
 
-    <!-- Menu : Strictement 3 colonnes horizontales -->
+    <!-- Menu -->
     <section id="menu" class="py-16 sm:py-28" x-data="menuData()">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 reveal">
@@ -214,7 +230,7 @@
       </div>
     </section>
 
-    <!-- Reste des sections inchangées (Boissons, Galerie, Avis, Localisation) -->
+    <!-- Boissons -->
     <section id="boissons" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="reveal">
@@ -238,6 +254,7 @@
       </div>
     </section>
 
+    <!-- Galerie -->
     <section id="galerie" class="py-20 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="reveal">
@@ -258,6 +275,7 @@
       </div>
     </section>
 
+    <!-- Avis -->
     <section id="avis" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="reveal">
@@ -276,6 +294,7 @@
       </div>
     </section>
 
+    <!-- Localisation -->
     <section id="contact" class="py-20 sm:py-28">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-8 items-start">
@@ -333,12 +352,12 @@
         openLightbox: false,
         selected: {src:'', title:''},
         gallery: [
-          {title:'Ambiance du restaurant', kicker:'Atmosphère', src:'https://images.unsplash.com/photo-1529692236671-f1b7c6c5ec8d?auto=format&fit=crop&w=1400&q=80'},
-          {title:'Terrasse élégante', kicker:'Terrasse', src:'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80'},
-          {title:'Cuisine premium', kicker:'Cuisine', src:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80'},
-          {title:'Cocktails signature', kicker:'Bar', src:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1400&q=80'},
-          {title:'Soirées lounge', kicker:'Nuit', src:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80'},
-          {title:'Ambiance sportive', kicker:'Sports', src:'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1400&q=80'}
+          {title: "Ambiance du restaurant", kicker: "Atmosphère", src: "https://images.unsplash.com/photo-1529692236671-f1b7c6c5ec8d?auto=format&fit=crop&w=1400&q=80"},
+          {title: "Terrasse élégante", kicker: "Terrasse", src: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80"},
+          {title: "Cuisine premium", kicker: "Cuisine", src: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80"},
+          {title: "Cocktails signature", kicker: "Bar", src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1400&q=80"},
+          {title: "Soirées lounge", kicker: "Nuit", src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80"},
+          {title: "Dîners d'exception", kicker: "Gastronomie", src: "https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1400&q=80"}
         ],
         testimonials: [
           {name:'Skander Trabelsi', text:"Un lieu où on peut vraiment se régaler entre ami(e)s, entre amoureux ou entre collègues et même pour un déjeuner ou dîner d'affaires. N'hésitez surtout pas à aller essayer les plats avec un bon vin."},
