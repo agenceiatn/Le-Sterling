@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Le Sterling — Restaurant, bar & lounge premium à Tunis, au sein de l'Hôtel Le Pacha." />
+  <meta name="theme-color" content="#070707" />
+  <title>Le Sterling | Restaurant • Bar • Lounge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root{
+      --bg:#070707;
+      --bg2:#0d0f12;
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --gold:#d7b46a;
+      --text:#f3efe7;
+      --muted:#b9b2a6;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,sans-serif;
+      background:
+        radial-gradient(circle at top,rgba(215,180,106,.12),transparent 30%),
+        radial-gradient(circle at 80% 10%,rgba(255,255,255,.08),transparent 20%),
+        linear-gradient(180deg,#050505 0%,#0b0b0d 40%,#070707 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+    .font-display{font-family:'Cormorant Garamond',serif}
+    .glass{
+      background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    .gold{color:var(--gold)}
+    .gold-bg{background:linear-gradient(135deg,#f2dba0,#b88d34 55%,#f6e7ba)}
+    .hero{
+      background:
+        linear-gradient(180deg,rgba(4,4,4,.15),rgba(4,4,4,.75)),
+        radial-gradient(circle at 20% 20%,rgba(215,180,106,.18),transparent 22%),
+        radial-gradient(circle at 80% 15%,rgba(255,255,255,.08),transparent 18%),
+        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80') center/cover no-repeat;
+    }
+    .section-title{font-size:clamp(2rem,4vw,4.2rem);line-height:.95}
+    .subtle{color:var(--muted)}
+    .menu-card{transition:transform .35s ease, border-color .35s ease, background .35s ease, opacity .35s ease}
+    .menu-card:hover{transform:translateY(-6px);border-color:rgba(215,180,106,.35);background:rgba(255,255,255,.08)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+    .reveal.show{opacity:1;transform:translateY(0)}
+    .line{height:1px;background:linear-gradient(90deg,transparent,rgba(215,180,106,.6),transparent)}
+    .marquee{display:flex;gap:2rem;white-space:nowrap;animation:mar 28s linear infinite}
+    @keyframes mar{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .spot{position:relative;overflow:hidden}
+    .spot::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.58))}
+    .spot img{transition:transform .6s ease}
+    .spot:hover img{transform:scale(1.08)}
+    .navlink{position:relative}
+    .navlink:after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width .3s ease}
+    .navlink:hover:after{width:100%}
+    .pill{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:60;padding:24px}
+    .lightbox.active{display:flex}
+    .grid-bg{
+      background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size:48px 48px;
+    }
+  </style>
+</head>
+<body x-data="site()">
+
+  <header class="fixed top-0 inset-x-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+      <div class="glass rounded-full px-5 py-3 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 rounded-full gold-bg flex items-center justify-center text-black font-black">S</div>
+          <div class="min-w-0">
+            <div class="font-display text-xl leading-none">Le Sterling</div>
+            <div class="text-[11px] uppercase tracking-[.28em] text-white/60 truncate">Restaurant • Bar • Lounge</div>
+          </div>
+        </div>
+        <nav class="hidden lg:flex items-center gap-6 text-sm text-white/80">
+          <a class="navlink" href="#concept">Concept</a>
+          <a class="navlink" href="#specialites">Spécialités</a>
+          <a class="navlink" href="#menu">Menu</a>
+          <a class="navlink" href="#boissons">Boissons</a>
+          <a class="navlink" href="#galerie">Galerie</a>
+          <a class="navlink" href="#avis">Avis</a>
+          <a class="navlink" href="#contact">Localisation</a>
+        </nav>
+        <a href="tel:+21629840840" class="hidden md:inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm gold-bg text-black font-semibold">Appeler</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero min-h-screen flex items-end pt-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pb-10 sm:pb-16">
+        <div class="grid lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-8 reveal">
+            <div class="inline-flex items-center gap-2 pill rounded-full px-4 py-2 text-xs uppercase tracking-[.3em] text-white/80 mb-6">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Tunis · Hôtel Le Pacha
+            </div>
+            <h1 class="font-display section-title max-w-4xl">Une expérience gastronomique premium, entre raffinement tunisien et lounge contemporain.</h1>
+            <p class="mt-6 max-w-2xl text-base sm:text-lg text-white/75 leading-8">
+              Le Sterling réunit restaurant, bar et lounge dans une atmosphère chaleureuse et sophistiquée, pensée pour les dîners d'affaires, les soirées romantiques, les sorties entre amis et les instants qui méritent un cadre d'exception.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#menu" class="rounded-full px-6 py-3 gold-bg text-black font-semibold">Découvrir le menu</a>
+              <a href="#contact" class="rounded-full px-6 py-3 border border-white/15 bg-white/5 font-semibold">Voir la localisation</a>
+            </div>
+          </div>
+          <div class="lg:col-span-4 reveal lg:pb-6">
+            <div class="glass rounded-3xl p-5 sm:p-6">
+              <div class="text-xs uppercase tracking-[.35em] text-white/55">Informations clés</div>
+              <div class="mt-5 space-y-4 text-sm sm:text-base">
+                <div class="flex justify-between gap-6"><span class="text-white/60">Adresse</span><span class="text-right">2-4 Avenue Kheireddine Pacha, Tunis</span></div>
+                <div class="flex justify-between gap-6"><span class="text-white/60">Téléphone</span><a class="text-right gold" href="tel:+21629840840">+216 29 840 840</a></div>
+                <div class="flex justify-between gap-6"><span class="text-white/60">Horaires</span><span class="text-right">12h00 – 01h00</span></div>
+                <div class="flex justify-between gap-6"><span class="text-white/60">Ambiance</span><span class="text-right">Gastronomie · Lounge · Sport</span></div>
+              </div>
+              <div class="mt-6 line"></div>
+              <div class="mt-6 grid grid-cols-2 gap-3 text-xs uppercase tracking-[.25em] text-white/70">
+                <div class="pill rounded-2xl p-3">Terrasse</div><div class="pill rounded-2xl p-3">Wifi gratuit</div><div class="pill rounded-2xl p-3">Parking</div><div class="pill rounded-2xl p-3">Carte bancaire</div><div class="pill rounded-2xl p-3">Livraison</div><div class="pill rounded-2xl p-3">À emporter</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-8 overflow-hidden border-y border-white/10">
+      <div class="marquee text-white/55 uppercase tracking-[.3em] text-xs sm:text-sm">
+        <span>Madfouna</span><span>Filet de Bœuf</span><span>Grillade Mixte</span><span>Pavé de Saumon</span><span>Assortiment de Fruits de Mer</span><span>Crevettes Panko</span><span>Kamounia Poulpe</span>
+        <span>Madfouna</span><span>Filet de Bœuf</span><span>Grillade Mixte</span><span>Pavé de Saumon</span><span>Assortiment de Fruits de Mer</span><span>Crevettes Panko</span><span>Kamounia Poulpe</span>
+      </div>
+    </section>
+
+    <section id="concept" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5 reveal">
+            <div class="text-xs uppercase tracking-[.35em] text-white/55">Concept</div>
+            <h2 class="font-display section-title mt-2">Un lieu conçu pour séduire dès le premier regard.</h2>
+          </div>
+          <div class="lg:col-span-7 reveal text-white/75 leading-8 text-base sm:text-lg">
+            <p>Le Sterling propose une lecture moderne de l'hospitalité, avec des lignes élégantes, des textures profondes et une ambiance qui passe naturellement du déjeuner raffiné à la soirée lounge.</p>
+            <p class="mt-4">Le lieu accueille aussi bien les repas d'affaires que les dîners romantiques, les sorties entre amis ou les soirées sportives dans une atmosphère conviviale et premium.</p>
+            <p class="mt-4">La carte met à l'honneur les classiques tunisiens, les grillades généreuses, les produits de la mer et une sélection de boissons pensée pour accompagner chaque moment avec style.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="specialites" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="text-xs uppercase tracking-[.35em] text-white/55">Plats signatures</div>
+          <h2 class="font-display section-title mt-2">Les créations à mettre en avant.</h2>
+        </div>
+        <div class="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-5 reveal">
+          <template x-for="s in specialites" :key="s.name">
+            <article class="glass rounded-3xl p-6">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-2xl font-display" x-text="s.name"></h3>
+                <span class="text-xs uppercase tracking-[.25em] text-white/45">Signature</span>
+              </div>
+              <p class="mt-4 text-white/70 leading-7" x-text="s.desc"></p>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="py-20 sm:py-28" x-data="menuData()">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 reveal">
+          <div>
+            <div class="text-xs uppercase tracking-[.35em] text-white/55">Menu</div>
+            <h2 class="font-display section-title mt-2">Carte interactive</h2>
+          </div>
+          <div class="w-full lg:w-[420px]">
+            <input x-model="search" type="text" placeholder="Rechercher un plat..." class="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-[rgba(215,180,106,.45)] text-white" />
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3 reveal">
+          <button @click="active='Tous'" :class="active==='Tous' ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-4 py-2 text-sm">Tous</button>
+          <template x-for="c in categories" :key="c">
+            <button @click="active=c" :class="active===c ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-4 py-2 text-sm" x-text="c"></button>
+          </template>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 reveal">
+          <template x-for="item in filtered" :key="item.name">
+            <article class="menu-card glass rounded-3xl p-5">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-xs uppercase tracking-[.25em] text-white/45" x-text="item.category"></div>
+                  <h3 class="mt-2 text-xl font-semibold" x-text="item.name"></h3>
+                </div>
+                <div class="shrink-0 rounded-full px-3 py-1 gold-bg text-black text-sm font-bold" x-text="item.price"></div>
+              </div>
+              <p class="mt-4 text-white/65 text-sm leading-7" x-text="item.desc"></p>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <section id="boissons" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="text-xs uppercase tracking-[.35em] text-white/55">Carte des boissons</div>
+          <h2 class="font-display section-title mt-2">Une sélection pensée pour le lounge.</h2>
+        </div>
+        <div class="mt-10 grid lg:grid-cols-2 gap-6 reveal">
+          <div class="glass rounded-3xl p-6">
+            <h3 class="text-2xl font-display">Vins</h3>
+            <p class="mt-4 text-white/70 leading-8">Blancs : Jour et Nuit, Magon, Magnifique, Muscat Sec, Sélian, Chardonnay, Soltane, Clos de Carthage, Shadrapa, Gioia, Imperial.</p>
+            <p class="mt-4 text-white/70 leading-8">Rosés : Jour et Nuit, Magnifique, Magon, Sélian, Clos de Carthage, Désir, Pétale de Rose, Gioia, Soltane, Krazy.</p>
+            <p class="mt-4 text-white/70 leading-8">Rouges : Didona, Clos de Carthage, Magon, Sélian, Sélian Réserve, Magon Signature, Magnifique, Vieux Magon, Shadrapa, Gioia, Soltane, Phenicia, Kurubis, Imperial, Nature, Kaprice.</p>
+          </div>
+          <div class="glass rounded-3xl p-6">
+            <h3 class="text-2xl font-display">Softs, bières et alcools</h3>
+            <p class="mt-4 text-white/70 leading-8">Safia 7 DT, Garci 7 DT, Café Nespresso 8 DT, Soda 7 DT, Red Bull 14 DT.</p>
+            <p class="mt-4 text-white/70 leading-8">Celtia / Amstel 6 DT, Beck's / Heineken 7 DT, Heineken Pression 50cl 8 DT, Celtia Pression 8 DT.</p>
+            <p class="mt-4 text-white/70 leading-8">Thibarine / Boukha 10 DT, Get 27 16 DT, Baileys 18 DT, Tequila Gold / Martini / Campari / Ricard 14 DT, Smirnoff Ice 25 DT, Smirnoff / Gin Gordon / Vodka Absolut / Red Label / J&B 18 DT, Black Label / Chivas Regal 28 DT, Jack Daniel's 26 DT, Double Black 35 DT.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galerie" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="text-xs uppercase tracking-[.35em] text-white/55">Galerie</div>
+          <h2 class="font-display section-title mt-2">Ambiances immersives.</h2>
+        </div>
+        <div class="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-5 reveal">
+          <template x-for="img in gallery" :key="img.src">
+            <button @click="open(img)" class="spot rounded-3xl overflow-hidden text-left relative h-80">
+              <img :src="img.src" :alt="img.title" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 p-5 z-10">
+                <div class="text-xs uppercase tracking-[.25em] text-white/65" x-text="img.kicker"></div>
+                <div class="text-2xl font-display text-white" x-text="img.title"></div>
+              </div>
+            </button>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <section id="avis" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="text-xs uppercase tracking-[.35em] text-white/55">Témoignages</div>
+          <h2 class="font-display section-title mt-2">Des avis qui traduisent l'expérience.</h2>
+        </div>
+        <div class="mt-10 grid lg:grid-cols-3 gap-5 reveal">
+          <template x-for="t in testimonials" :key="t.name">
+            <article class="glass rounded-3xl p-6">
+              <div class="gold text-sm uppercase tracking-[.25em]">Client</div>
+              <h3 class="mt-3 text-xl font-semibold" x-text="t.name"></h3>
+              <p class="mt-4 text-white/70 leading-8 italic" x-text="t.text"></p>
+            </article>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-5 reveal">
+            <div class="text-xs uppercase tracking-[.35em] text-white/55">Localisation</div>
+            <h2 class="font-display section-title mt-2">Au cœur de Tunis, Hôtel Le Pacha.</h2>
+            <div class="mt-6 glass rounded-3xl p-6 space-y-4 text-white/80 leading-8">
+              <div>2-4 Avenue Kheireddine Pacha<br>Hôtel Le Pacha<br>1002 Tunis – Tunisie</div>
+              <a href="tel:+21629840840" class="block gold font-semibold">+216 29 840 840</a>
+              <div>Horaires : 12h00 – 01h00</div>
+              <a href="https://maps.google.com" target="_blank" class="inline-flex mt-2 rounded-full px-5 py-3 gold-bg text-black font-semibold">Ouvrir dans Google Maps</a>
+            </div>
+          </div>
+          <div class="lg:col-span-7 reveal">
+            <div class="glass rounded-3xl overflow-hidden">
+              <iframe title="Google Maps Le Sterling" src="https://maps.google.com/maps?q=Hotel%20Le%20Pacha%20Tunis&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="520" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="line mb-8"></div>
+      <div class="grid md:grid-cols-3 gap-6 text-white/70">
+        <div>
+          <div class="font-display text-3xl text-white">Le Sterling</div>
+          <p class="mt-3">Restaurant • Bar • Lounge</p>
+        </div>
+        <div>
+          <p>2-4 Avenue Kheireddine Pacha, Hôtel Le Pacha, 1002 Tunis, Tunisie</p>
+          <p class="mt-2">Ouvert de 12h00 à 01h00</p>
+        </div>
+        <div class="md:text-right">
+          <p>Instagram · Facebook · TikTok</p>
+          <p class="mt-2">© 2026 Le Sterling — Tous droits réservés.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" :class="openLightbox ? 'active' : ''" @click.self="close()">
+    <div class="max-w-5xl w-full">
+      <button @click="close()" class="mb-4 ml-auto block rounded-full w-10 h-10 bg-white/10 text-white">✕</button>
+      <img :src="selected.src" :alt="selected.title" class="w-full max-h-[80vh] object-contain rounded-3xl shadow-2xl">
+      <p class="mt-4 text-center text-white/80" x-text="selected.title"></p>
+    </div>
+  </div>
+
+  <script>
+    function site(){
+      return {
+        openLightbox: false,
+        selected: {src:'', title:''},
+        specialites: [
+          {name:'Madfouna', desc:'Une signature tunisienne généreuse et chaleureuse, mise en scène comme un plat emblématique de la maison.'},
+          {name:'Filet de Bœuf', desc:'Une pièce noble, servie dans un esprit raffiné, pour une expérience à la fois simple et luxueuse.'},
+          {name:'Grillade Mixte', desc:'Un plat convivial et spectaculaire, idéal à partager dans l’atmosphère lounge du restaurant.'},
+          {name:'Pavé de Saumon', desc:'Une assiette élégante, équilibrée et contemporaine, pensée pour un public gourmet.'},
+          {name:'Assortiment de Fruits de Mer', desc:'Une proposition généreuse, fraîche et haut de gamme, parfaite pour les amateurs de mer.'},
+          {name:'Crevettes Panko', desc:'Croquant, finesse et gourmandise dans une assiette au rendu visuel premium.'},
+          {name:'Kamounia Poulpe', desc:'Un plat de caractère, riche en identité et en profondeur gustative.'}
+        ],
+        gallery: [
+          {title:'Ambiance du restaurant', kicker:'Atmosphère', src:'https://images.unsplash.com/photo-1529692236671-f1b7c6c5ec8d?auto=format&fit=crop&w=1400&q=80'},
+          {title:'Terrasse élégante', kicker:'Terrasse', src:'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80'},
+          {title:'Cuisine premium', kicker:'Cuisine', src:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=80'},
+          {title:'Cocktails signature', kicker:'Bar', src:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1400&q=80'},
+          {title:'Soirées lounge', kicker:'Nuit', src:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80'},
+          {title:'Ambiance sportive', kicker:'Sports', src:'https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1400&q=80'}
+        ],
+        testimonials: [
+          {name:'Skander Trabelsi', text:"Un lieu où on peut vraiment se régaler entre ami(e)s, entre amoureux ou entre collègues et même pour un déjeuner ou dîner d'affaires. N'hésitez surtout pas à aller essayer les plats avec un bon vin."},
+          {name:'Reza Sattarzadeh Nowbari', text:"Le Sterling is a very nice bar restaurant to chill near downtown Tunis. I went there for dinner one night and the quality of the food was superb. Their mixed grill dish was very generous and can easily satisfy two people."},
+          {name:'Sadri Marrakchi', text:'Bon service et bonne cuisine.'}
+        ],
+        init(){
+          document.addEventListener('DOMContentLoaded', () => {
+            const io = new IntersectionObserver(entries => {
+              entries.forEach(e => {
+                if(e.isIntersecting) {
+                  e.target.classList.add('show');
+                }
+              });
+            }, {threshold: 0.05});
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+          });
+        },
+        open(img){this.selected = img; this.openLightbox = true; document.body.style.overflow = 'hidden'},
+        close(){this.openLightbox = false; document.body.style.overflow = 'auto'}
+      }
+    }
+
+    function menuData(){
+      const items = [
+        {category:'Entrées Froides', name:'Plat tunisien', price:'22 DT', desc:'Une entrée généreuse, fraîche et élégante.'},
+        {category:'Entrées Froides', name:'Thon à l\'huile', price:'18 DT', desc:'Simple, juste, perfectly équilibré.'},
+        {category:'Entrées Froides', name:'Salade César', price:'28 DT', desc:'Classique premium, sauce et croustillant.'},
+        {category:'Entrées Froides', name:'Trio de salades', price:'20 DT', desc:'Fraîcheur et variété à partager.'},
+        {category:'Entrées Froides', name:'Ardoise de fromage', price:'48 DT', desc:'Sélection raffinée pour l’apéritif.'},
+        {category:'Entrées Chaudes', name:'Brik au thon', price:'12 DT', desc:'Croustillante et traditionnelle.'},
+        {category:'Entrées Chaudes', name:'Brik aux chevrettes', price:'14 DT', desc:'Généreuse et délicatement iodée.'},
+        {category:'Entrées Chaudes', name:'Assiette de frites', price:'15 DT', desc:'Un accompagnement simple et apprécié.'},
+        {category:'Entrées Chaudes', name:'Shan mokli', price:'18 DT', desc:'Une entrée frite pleine de caractère.'},
+        {category:'Entrées Chaudes', name:'Filet de sardines panées', price:'24 DT', desc:'Un classique marin revisité avec finesse.'},
+        {category:'Entrées Chaudes', name:'Os à moelle', price:'28 DT', desc:'Texture fondante et esprit gourmand.'},
+        {category:'Entrées Chaudes', name:'Moules marinières', price:'34 DT', desc:'Iodé, parfumé et très convivial.'},
+        {category:'Entrées Chaudes', name:'Escalope panée', price:'28 DT', desc:'Croustillant et généreux.'},
+        {category:'Entrées Chaudes', name:'Ojja merguez', price:'28 DT', desc:'Une recette tunisienne chaleureuse.'},
+        {category:'Entrées Chaudes', name:'Chevrettes panées', price:'34 DT', desc:'Délicates et savoureuses.'},
+        {category:'Entrées Chaudes', name:'Chevrettes sautées', price:'34 DT', desc:'Une lecture plus fine des saveurs de mer.'},
+        {category:'Entrées Chaudes', name:'Assiette de poisson frit', price:'35 DT', desc:'Simple et efficace, avec une belle présence.'},
+        {category:'Entrées Chaudes', name:'Chevrettes à la Sterling', price:'36 DT', desc:'La spécialité maison dans sa version signature.'},
+        {category:'Entrées Chaudes', name:'Calamars dorés', price:'38 DT', desc:'Croquant et très gourmand.'},
+        {category:'Entrées Chaudes', name:'Ojja chevrettes', price:'38 DT', desc:'Un grand classique de la cuisine tunisienne.'},
+        {category:'Entrées Chaudes', name:'Camembert rôti', price:'42 DT', desc:'Fondant, réconfortant et élégant.'},
+        {category:'Entrées Chaudes', name:'Œufs de seiche à la Sterling', price:'48 DT', desc:'Une signature maison à forte personnalité.'},
+        {category:'Entrées Chaudes', name:'Crevettes Panko', price:'54 DT', desc:'Croquantes et premium, parfaites pour commencer.'},
+        {category:'Coin Sterling', name:'Boulettes à la tunisienne', price:'28 DT', desc:'Une spécialité conviviale et généreuse.'},
+        {category:'Coin Sterling', name:'Akood', price:'30 DT', desc:'Une proposition locale, authentique et riche.'},
+        {category:'Coin Sterling', name:'Mloukhia', price:'34 DT', desc:'Un incontournable tunisien de caractère.'},
+        {category:'Coin Sterling', name:'Chtar Ras Allouch', price:'32 DT', desc:'Un plat traditionnel au nom emblématique.'},
+        {category:'Coin Sterling', name:'Madfouna', price:'36 DT', desc:'La signature tunisienne mise en lumière.'},
+        {category:'Coin Sterling', name:'Klaia Baqri', price:'36 DT', desc:'Intense, franche et authentique.'},
+        {category:'Coin Sterling', name:'Klaia Allouche', price:'48 DT', desc:'Une spécialité noble et généreuse.'},
+        {category:'Coin Sterling', name:'Kamounia Baqri', price:'36 DT', desc:'Profondeur, épices et identité.'},
+        {category:'Coin Sterling', name:'Kamounia Poulpe', price:'62 DT', desc:'La version la plus premium et expressive.'},
+        {category:'Coin Sterling', name:'Épaule d\'agneau (48h à l\'avance)', price:'240 DT', desc:'Pièce d’exception sur commande préalable.'},
+        {category:'Coin Sterling', name:'Agneau entier (48h à l\'avance)', price:'Prix au poids', desc:'Proposition festive à réserver en amont.'},
+        {category:'Pâtes', name:'Penne Putanesca', price:'32 DT', desc:'Équilibre, caractère et gourmandise.'},
+        {category:'Pâtes', name:'Fell aux boulettes', price:'34 DT', desc:'Un clin d’œil chaleureux à la tradition.'},
+        {category:'Pâtes', name:'Penne Alfredo', price:'32 DT', desc:'Crémeux, doux et très apprécié.'},
+        {category:'Pâtes', name:'Pâtes au Mérou', price:'48 DT', desc:'Alliance élégante entre terre et mer.'},
+        {category:'Pâtes', name:'Spaghetti Fruits de Mer', price:'56 DT', desc:'Une assiette généreuse et raffinée.'},
+        {category:'Viandes & Volailles', name:'Émincé de poulet', price:'32 DT', desc:'Rapide, gourmand et rassurant.'},
+        {category:'Viandes & Volailles', name:'Émincé de bœuf', price:'38 DT', desc:'La viande dans sa version la plus savoureuse.'},
+        {category:'Viandes & Volailles', name:'Grillade mixte', price:'48 DT', desc:'Le plat convivial par excellence.'},
+        {category:'Viandes & Volailles', name:'Complet merguez', price:'32 DT', desc:'Simple et très populaire.'},
+        {category:'Viandes & Volailles', name:'Côte de bœuf', price:'68 DT', desc:'Une pièce imposante et généreuse.'},
+        {category:'Viandes & Volailles', name:'Filet de bœuf', price:'66 DT', desc:'Noble, tendre et parfaitement premium.'},
+        {category:'Viandes & Volailles', name:'Poulet grillé', price:'66 DT', desc:'Classique, équilibré et réconfortant.'},
+        {category:'Viandes & Volailles', name:'Souris d\'agneau', price:'74 DT', desc:'Fondante, élégante et très gastronomique.'},
+        {category:'Viandes & Volailles', name:'Mezza Terre & Mer (4 personnes)', price:'180 DT', desc:'Un grand format à partager, entre terre et mer.'},
+        {category:'Poissons & Fruits de Mer', name:'Dorade grillée', price:'36 DT', desc:'Fraîcheur et simplicité maîtrisée.'},
+        {category:'Poissons & Fruits de Mer', name:'Loup grillé', price:'38 DT', desc:'Classique méditerranéen, très élégant.'},
+        {category:'Poissons & Fruits de Mer', name:'Kabkabou', price:'40 DT', desc:'Un plat tunisien riche et parfumé.'},
+        {category:'Poissons & Fruits de Mer', name:'Crevettes grillées', price:'48 DT', desc:'Saines, généreuses et savoureuses.'},
+        {category:'Poissons & Fruits de Mer', name:'Seiches grillées', price:'38 DT', desc:'Texture délicate et goût marin marqué.'},
+        {category:'Poissons & Fruits de Mer', name:'Pavé de saumon', price:'62 DT', desc:'Fondant, élégant et parfaitement dressé.'},
+        {category:'Poissons & Fruits de Mer', name:'Poulpe grillé', price:'62 DT', desc:'Une assiette au caractère affirmé.'},
+        {category:'Poissons & Fruits de Mer', name:'Assortiment de Fruits de Mer', price:'120 DT', desc:'Une composition premium à partager.'},
+        {category:'Desserts', name:'Sorbet citron', price:'14 DT', desc:'Léger, vif et rafraîchissant.'},
+        {category:'Desserts', name:'Fondant au chocolat', price:'18 DT', desc:'L’accord parfait pour finir en douceur.'},
+        {category:'Desserts', name:'Assiette de fruits de saison', price:'36 DT', desc:'Fraîcheur et élégance naturelle.'}
+      ];
+      return {
+        search: '',
+        active: 'Tous',
+        categories: [...new Set(items.map(i => i.category))],
+        items,
+        get filtered(){
+          return this.items.filter(i =>
+            (this.active === 'Tous' || i.category === this.active) &&
+            (i.name.toLowerCase().includes(this.search.toLowerCase()) || i.desc.toLowerCase().includes(this.search.toLowerCase()))
+          )
+        }
+      }
+    }
+  </script>
+</body>
+</html>
