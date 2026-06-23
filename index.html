@@ -8,7 +8,7 @@
   <title>Le Sterling | Restaurant • Bar • Lounge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
@@ -34,23 +34,20 @@
     }
     .font-display{font-family:'Cormorant Garamond',serif}
     .glass{
-      background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
-      backdrop-filter:blur(18px);
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.03));
+      backdrop-filter:blur(24px);
+      -webkit-backdrop-filter:blur(24px);
+      border:1px solid rgba(255,255,255,.12);
     }
     .gold{color:var(--gold)}
     .gold-bg{background:linear-gradient(135deg,#f2dba0,#b88d34 55%,#f6e7ba)}
     .hero{
       background:
-        linear-gradient(180deg,rgba(4,4,4,.15),rgba(4,4,4,.75)),
-        radial-gradient(circle at 20% 20%,rgba(215,180,106,.18),transparent 22%),
-        radial-gradient(circle at 80% 15%,rgba(255,255,255,.08),transparent 18%),
+        linear-gradient(180deg,rgba(4,4,4,.35),rgba(4,4,4,.75)),
         url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80') center/cover no-repeat;
     }
-    .section-title{font-size:clamp(2rem,4vw,4.2rem);line-height:.95}
-    .subtle{color:var(--muted)}
-    .menu-card{transition:transform .35s ease, border-color .35s ease, background .35s ease, opacity .35s ease}
+    .section-title{font-size:clamp(1.8rem, 3.5vw, 3.2rem);line-height:1.1}
+    .menu-card{transition:transform .35s ease, border-color .35s ease, background .35s ease}
     .menu-card:hover{transform:translateY(-6px);border-color:rgba(215,180,106,.35);background:rgba(255,255,255,.08)}
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
     .reveal.show{opacity:1;transform:translateY(0)}
@@ -67,25 +64,24 @@
     .pill{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:60;padding:24px}
     .lightbox.active{display:flex}
-    .grid-bg{
-      background-image:linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size:48px 48px;
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body x-data="site()">
 
+  <!-- Header calqué sur l'image -->
   <header class="fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
-      <div class="glass rounded-full px-5 py-3 flex items-center justify-between gap-4">
+      <div class="glass rounded-full px-6 py-3 flex items-center justify-between gap-4">
         <div class="flex items-center gap-3 min-w-0">
-          <div class="w-10 h-10 rounded-full gold-bg flex items-center justify-center text-black font-black">S</div>
+          <div class="w-9 h-9 rounded-full gold-bg flex items-center justify-center text-black font-black text-sm shrink-0">S</div>
           <div class="min-w-0">
-            <div class="font-display text-xl leading-none">Le Sterling</div>
-            <div class="text-[11px] uppercase tracking-[.28em] text-white/60 truncate">Restaurant • Bar • Lounge</div>
+            <div class="font-display text-lg leading-none tracking-wide">Le Sterling</div>
+            <div class="text-[9px] uppercase tracking-[.25em] text-white/50 truncate mt-0.5">Restaurant • Bar • Lounge</div>
           </div>
         </div>
-        <nav class="hidden lg:flex items-center gap-6 text-sm text-white/80">
+        <nav class="hidden lg:flex items-center gap-6 text-xs uppercase tracking-widest text-white/80">
           <a class="navlink" href="#concept">Concept</a>
           <a class="navlink" href="#specialites">Spécialités</a>
           <a class="navlink" href="#menu">Menu</a>
@@ -94,91 +90,84 @@
           <a class="navlink" href="#avis">Avis</a>
           <a class="navlink" href="#contact">Localisation</a>
         </nav>
-        <a href="tel:+21629840840" class="hidden md:inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm gold-bg text-black font-semibold">Appeler</a>
+        <a href="tel:+21629840840" class="inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs gold-bg text-black font-bold uppercase tracking-wider shrink-0">Appeler</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero min-h-screen flex items-end pt-24">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pb-10 sm:pb-16">
-        <div class="grid lg:grid-cols-12 gap-8 items-end">
-          <div class="lg:col-span-8 reveal">
-            <div class="inline-flex items-center gap-2 pill rounded-full px-4 py-2 text-xs uppercase tracking-[.3em] text-white/80 mb-6">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Tunis · Hôtel Le Pacha
+    <!-- Section Hero conforme à l'image image_182b3b.jpg -->
+    <section class="hero min-h-screen flex items-center pt-28 pb-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Bloc de Gauche : Textes et Boutons -->
+          <div class="lg:col-span-7 reveal">
+            <div class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] uppercase tracking-[.25em] text-white/90 bg-white/5 border border-white/10 mb-6">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Tunis · Hôtel Le Pacha
             </div>
-            <h1 class="font-display section-title max-w-4xl">Une expérience gastronomique premium, entre raffinement tunisien et lounge contemporain.</h1>
-            <p class="mt-6 max-w-2xl text-base sm:text-lg text-white/75 leading-8">
+            <h1 class="font-display section-title text-white">
+              Une expérience gastronomique premium, entre raffinement tunisien et lounge contemporain.
+            </h1>
+            <p class="mt-6 text-white/70 text-sm sm:text-base max-w-xl leading-relaxed">
               Le Sterling réunit restaurant, bar et lounge dans une atmosphère chaleureuse et sophistiquée, pensée pour les dîners d'affaires, les soirées romantiques, les sorties entre amis et les instants qui méritent un cadre d'exception.
             </p>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href="#menu" class="rounded-full px-6 py-3 gold-bg text-black font-semibold">Découvrir le menu</a>
-              <a href="#contact" class="rounded-full px-6 py-3 border border-white/15 bg-white/5 font-semibold">Voir la localisation</a>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#menu" class="rounded-full px-6 py-3 gold-bg text-black font-bold text-xs uppercase tracking-wider shadow-lg">Découvrir le menu</a>
+              <a href="#contact" class="rounded-full px-6 py-3 border border-white/20 bg-white/5 text-white font-semibold text-xs uppercase tracking-wider hover:bg-white/10 transition-all">Voir la localisation</a>
             </div>
           </div>
-          <div class="lg:col-span-4 reveal lg:pb-6">
-            <div class="glass rounded-3xl p-5 sm:p-6">
-              <div class="text-xs uppercase tracking-[.35em] text-white/55">Informations clés</div>
-              <div class="mt-5 space-y-4 text-sm sm:text-base">
-                <div class="flex justify-between gap-6"><span class="text-white/60">Adresse</span><span class="text-right">2-4 Avenue Kheireddine Pacha, Tunis</span></div>
-                <div class="flex justify-between gap-6"><span class="text-white/60">Téléphone</span><a class="text-right gold" href="tel:+21629840840">+216 29 840 840</a></div>
-                <div class="flex justify-between gap-6"><span class="text-white/60">Horaires</span><span class="text-right">12h00 – 01h00</span></div>
-                <div class="flex justify-between gap-6"><span class="text-white/60">Ambiance</span><span class="text-right">Gastronomie · Lounge · Sport</span></div>
+
+          <!-- Bloc de Droite : Carte d'informations vitrée (Glassmorphism) -->
+          <div class="lg:col-span-5 reveal">
+            <div class="glass rounded-3xl p-6 sm:p-8 shadow-2xl">
+              <h2 class="text-xs uppercase tracking-[.25em] text-white/50 mb-6 font-semibold">Informations clés</h2>
+              
+              <div class="space-y-4 text-xs sm:text-sm">
+                <div class="flex justify-between items-start py-1 border-b border-white/5">
+                  <span class="text-white/50">Adresse</span>
+                  <span class="text-right text-white font-medium max-w-[200px]">2-4 Avenue Kheireddine Pacha, Tunis</span>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-white/5">
+                  <span class="text-white/50">Téléphone</span>
+                  <a href="tel:+21629840840" class="gold font-semibold tracking-wider hover:underline">+216 29 840 840</a>
+                </div>
+                <div class="flex justify-between items-center py-1 border-b border-white/5">
+                  <span class="text-white/50">Horaires</span>
+                  <span class="text-white font-medium">12h00 – 01h00</span>
+                </div>
+                <div class="flex justify-between items-center py-1 pb-4">
+                  <span class="text-white/50">Ambiance</span>
+                  <span class="text-white font-medium text-xs">Gastronomie · Lounge · Sport</span>
+                </div>
               </div>
-              <div class="mt-6 line"></div>
-              <div class="mt-6 grid grid-cols-2 gap-3 text-xs uppercase tracking-[.25em] text-white/70">
-                <div class="pill rounded-2xl p-3">Terrasse</div><div class="pill rounded-2xl p-3">Wifi gratuit</div><div class="pill rounded-2xl p-3">Parking</div><div class="pill rounded-2xl p-3">Carte bancaire</div><div class="pill rounded-2xl p-3">Livraison</div><div class="pill rounded-2xl p-3">À emporter</div>
+
+              <!-- Grille des Badges d'infrastructures -->
+              <div class="mt-6 grid grid-cols-2 gap-2 text-[10px] uppercase tracking-widest text-center text-white/80">
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2">Terrasse</div>
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2">Wifi Gratuit</div>
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2">Parking</div>
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2 text-[9px] flex items-center justify-center">Carte Bancaire</div>
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2">Livraison</div>
+                <div class="border border-white/10 bg-white/5 rounded-xl py-3 px-2">À Emporter</div>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <section class="py-8 overflow-hidden border-y border-white/10">
+    <!-- Marquee -->
+    <section class="py-6 overflow-hidden border-y border-white/10">
       <div class="marquee text-white/55 uppercase tracking-[.3em] text-xs sm:text-sm">
         <span>Madfouna</span><span>Filet de Bœuf</span><span>Grillade Mixte</span><span>Pavé de Saumon</span><span>Assortiment de Fruits de Mer</span><span>Crevettes Panko</span><span>Kamounia Poulpe</span>
-        <span>Madfouna</span><span>Filet de Bœuf</span><span>Grillade Mixte</span><span>Pavé de Saumon</span><span>Assortiment de Fruits de Mer</span><span>Crevettes Panko</span><span>Kamounia Poulpe</span>
       </div>
     </section>
 
-    <section id="concept" class="py-20 sm:py-28">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-5 reveal">
-            <div class="text-xs uppercase tracking-[.35em] text-white/55">Concept</div>
-            <h2 class="font-display section-title mt-2">Un lieu conçu pour séduire dès le premier regard.</h2>
-          </div>
-          <div class="lg:col-span-7 reveal text-white/75 leading-8 text-base sm:text-lg">
-            <p>Le Sterling propose une lecture moderne de l'hospitalité, avec des lignes élégantes, des textures profondes et une ambiance qui passe naturellement du déjeuner raffiné à la soirée lounge.</p>
-            <p class="mt-4">Le lieu accueille aussi bien les repas d'affaires que les dîners romantiques, les sorties entre amis ou les soirées sportives dans une atmosphère conviviale et premium.</p>
-            <p class="mt-4">La carte met à l'honneur les classiques tunisiens, les grillades généreuses, les produits de la mer et une sélection de boissons pensée pour accompagner chaque moment avec style.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="specialites" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="reveal">
-          <div class="text-xs uppercase tracking-[.35em] text-white/55">Plats signatures</div>
-          <h2 class="font-display section-title mt-2">Les créations à mettre en avant.</h2>
-        </div>
-        <div class="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-5 reveal">
-          <template x-for="s in specialites" :key="s.name">
-            <article class="glass rounded-3xl p-6">
-              <div class="flex items-start justify-between gap-4">
-                <h3 class="text-2xl font-display" x-text="s.name"></h3>
-                <span class="text-xs uppercase tracking-[.25em] text-white/45">Signature</span>
-              </div>
-              <p class="mt-4 text-white/70 leading-7" x-text="s.desc"></p>
-            </article>
-          </template>
-        </div>
-      </div>
-    </section>
-
-    <section id="menu" class="py-20 sm:py-28" x-data="menuData()">
+    <!-- Menu : Strictement 3 colonnes horizontales -->
+    <section id="menu" class="py-16 sm:py-28" x-data="menuData()">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 reveal">
           <div>
@@ -186,32 +175,46 @@
             <h2 class="font-display section-title mt-2">Carte interactive</h2>
           </div>
           <div class="w-full lg:w-[420px]">
-            <input x-model="search" type="text" placeholder="Rechercher un plat..." class="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-[rgba(215,180,106,.45)] text-white" />
+            <input x-model="search" @input="limit = 9" type="text" placeholder="Rechercher un plat..." class="w-full rounded-2xl bg-white/5 border border-white/10 px-5 py-4 outline-none focus:border-[rgba(215,180,106,.45)] text-white text-sm" />
           </div>
         </div>
-        <div class="mt-6 flex flex-wrap gap-3 reveal">
-          <button @click="active='Tous'" :class="active==='Tous' ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-4 py-2 text-sm">Tous</button>
-          <template x-for="c in categories" :key="c">
-            <button @click="active=c" :class="active===c ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-4 py-2 text-sm" x-text="c"></button>
-          </template>
+        
+        <!-- Catégories Horizontales -->
+        <div class="mt-8 reveal relative">
+          <div class="flex overflow-x-auto gap-2 pb-2 no-scrollbar snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0">
+            <button @click="active='Tous'; limit = 9" :class="active==='Tous' ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-5 py-2.5 text-xs font-medium shrink-0 snap-start">Tous</button>
+            <template x-for="c in categories" :key="c">
+              <button @click="active=c; limit = 9" :class="active===c ? 'gold-bg text-black' : 'pill text-white/75'" class="rounded-full px-5 py-2.5 text-xs font-medium shrink-0 snap-start" x-text="c"></button>
+            </template>
+          </div>
         </div>
-        <div class="mt-10 grid sm:grid-cols-2 xl:grid-cols-3 gap-5 reveal">
-          <template x-for="item in filtered" :key="item.name">
-            <article class="menu-card glass rounded-3xl p-5">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="text-xs uppercase tracking-[.25em] text-white/45" x-text="item.category"></div>
-                  <h3 class="mt-2 text-xl font-semibold" x-text="item.name"></h3>
+
+        <!-- Grille en 3 colonnes horizontales côte à côte -->
+        <div class="mt-8 grid grid-cols-3 gap-2 sm:gap-5 reveal">
+          <template x-for="item in filtered.slice(0, limit)" :key="item.name">
+            <article class="menu-card glass rounded-xl sm:rounded-2xl p-3 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[160px]">
+              <div class="flex flex-col justify-between h-full gap-1 min-w-0">
+                <div class="min-w-0">
+                  <div class="text-[8px] sm:text-[10px] uppercase tracking-wider text-white/40 truncate" x-text="item.category"></div>
+                  <h3 class="mt-0.5 text-[11px] sm:text-lg font-semibold text-white line-clamp-2 sm:truncate leading-tight" x-text="item.name"></h3>
                 </div>
-                <div class="shrink-0 rounded-full px-3 py-1 gold-bg text-black text-sm font-bold" x-text="item.price"></div>
+                <div class="mt-2 sm:mt-0 self-start shrink-0 rounded-full px-2 py-0.5 sm:px-3 sm:py-1 gold-bg text-black text-[9px] sm:text-sm font-bold" x-text="item.price"></div>
               </div>
-              <p class="mt-4 text-white/65 text-sm leading-7" x-text="item.desc"></p>
+              <p class="mt-2 text-white/65 text-[10px] sm:text-sm leading-tight sm:leading-relaxed line-clamp-2 hidden sm:block" x-text="item.desc"></p>
             </article>
           </template>
+        </div>
+
+        <!-- Bouton Pagination -->
+        <div class="mt-10 text-center reveal" x-show="filtered.length > limit">
+          <button @click="limit += 9" class="rounded-full px-6 py-3 border border-[var(--gold)] text-[var(--gold)] bg-white/5 font-semibold text-xs hover:bg-[var(--gold)] hover:text-black transition-all">
+            Afficher plus de plats (<span x-text="filtered.length - limit"></span>)
+          </button>
         </div>
       </div>
     </section>
 
+    <!-- Reste des sections inchangées (Boissons, Galerie, Avis, Localisation) -->
     <section id="boissons" class="py-20 sm:py-28 bg-white/5 border-y border-white/10">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="reveal">
@@ -221,15 +224,15 @@
         <div class="mt-10 grid lg:grid-cols-2 gap-6 reveal">
           <div class="glass rounded-3xl p-6">
             <h3 class="text-2xl font-display">Vins</h3>
-            <p class="mt-4 text-white/70 leading-8">Blancs : Jour et Nuit, Magon, Magnifique, Muscat Sec, Sélian, Chardonnay, Soltane, Clos de Carthage, Shadrapa, Gioia, Imperial.</p>
-            <p class="mt-4 text-white/70 leading-8">Rosés : Jour et Nuit, Magnifique, Magon, Sélian, Clos de Carthage, Désir, Pétale de Rose, Gioia, Soltane, Krazy.</p>
-            <p class="mt-4 text-white/70 leading-8">Rouges : Didona, Clos de Carthage, Magon, Sélian, Sélian Réserve, Magon Signature, Magnifique, Vieux Magon, Shadrapa, Gioia, Soltane, Phenicia, Kurubis, Imperial, Nature, Kaprice.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Blancs : Jour et Nuit, Magon, Magnifique, Muscat Sec, Sélian, Chardonnay, Soltane, Clos de Carthage, Shadrapa, Gioia, Imperial.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Rosés : Jour et Nuit, Magnifique, Magon, Sélian, Clos de Carthage, Désir, Pétale de Rose, Gioia, Soltane, Krazy.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Rouges : Didona, Clos de Carthage, Magon, Sélian, Sélian Réserve, Magon Signature, Magnifique, Vieux Magon, Shadrapa, Gioia, Soltane, Phenicia, Kurubis, Imperial, Nature, Kaprice.</p>
           </div>
           <div class="glass rounded-3xl p-6">
             <h3 class="text-2xl font-display">Softs, bières et alcools</h3>
-            <p class="mt-4 text-white/70 leading-8">Safia 7 DT, Garci 7 DT, Café Nespresso 8 DT, Soda 7 DT, Red Bull 14 DT.</p>
-            <p class="mt-4 text-white/70 leading-8">Celtia / Amstel 6 DT, Beck's / Heineken 7 DT, Heineken Pression 50cl 8 DT, Celtia Pression 8 DT.</p>
-            <p class="mt-4 text-white/70 leading-8">Thibarine / Boukha 10 DT, Get 27 16 DT, Baileys 18 DT, Tequila Gold / Martini / Campari / Ricard 14 DT, Smirnoff Ice 25 DT, Smirnoff / Gin Gordon / Vodka Absolut / Red Label / J&B 18 DT, Black Label / Chivas Regal 28 DT, Jack Daniel's 26 DT, Double Black 35 DT.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Safia 7 DT, Garci 7 DT, Café Nespresso 8 DT, Soda 7 DT, Red Bull 14 DT.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Celtia / Amstel 6 DT, Beck's / Heineken 7 DT, Heineken Pression 50cl 8 DT, Celtia Pression 8 DT.</p>
+            <p class="mt-4 text-white/70 leading-8 text-sm">Thibarine / Boukha 10 DT, Get 27 16 DT, Baileys 18 DT, Tequila Gold / Martini / Campari / Ricard 14 DT, Smirnoff Ice 25 DT, Smirnoff / Gin Gordon / Vodka Absolut / Red Label / J&B 18 DT, Black Label / Chivas Regal 28 DT, Jack Daniel's 26 DT, Double Black 35 DT.</p>
           </div>
         </div>
       </div>
@@ -266,7 +269,7 @@
             <article class="glass rounded-3xl p-6">
               <div class="gold text-sm uppercase tracking-[.25em]">Client</div>
               <h3 class="mt-3 text-xl font-semibold" x-text="t.name"></h3>
-              <p class="mt-4 text-white/70 leading-8 italic" x-text="t.text"></p>
+              <p class="mt-4 text-white/70 leading-8 italic text-sm" x-text="t.text"></p>
             </article>
           </template>
         </div>
@@ -279,11 +282,11 @@
           <div class="lg:col-span-5 reveal">
             <div class="text-xs uppercase tracking-[.35em] text-white/55">Localisation</div>
             <h2 class="font-display section-title mt-2">Au cœur de Tunis, Hôtel Le Pacha.</h2>
-            <div class="mt-6 glass rounded-3xl p-6 space-y-4 text-white/80 leading-8">
+            <div class="mt-6 glass rounded-3xl p-6 space-y-4 text-white/80 leading-8 text-sm">
               <div>2-4 Avenue Kheireddine Pacha<br>Hôtel Le Pacha<br>1002 Tunis – Tunisie</div>
               <a href="tel:+21629840840" class="block gold font-semibold">+216 29 840 840</a>
               <div>Horaires : 12h00 – 01h00</div>
-              <a href="https://maps.google.com" target="_blank" class="inline-flex mt-2 rounded-full px-5 py-3 gold-bg text-black font-semibold">Ouvrir dans Google Maps</a>
+              <a href="https://maps.google.com" target="_blank" class="inline-flex mt-2 rounded-full px-5 py-3 gold-bg text-black font-semibold text-xs uppercase tracking-wider">Ouvrir dans Google Maps</a>
             </div>
           </div>
           <div class="lg:col-span-7 reveal">
@@ -299,7 +302,7 @@
   <footer class="py-12">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="line mb-8"></div>
-      <div class="grid md:grid-cols-3 gap-6 text-white/70">
+      <div class="grid md:grid-cols-3 gap-6 text-white/70 text-xs">
         <div>
           <div class="font-display text-3xl text-white">Le Sterling</div>
           <p class="mt-3">Restaurant • Bar • Lounge</p>
@@ -329,15 +332,6 @@
       return {
         openLightbox: false,
         selected: {src:'', title:''},
-        specialites: [
-          {name:'Madfouna', desc:'Une signature tunisienne généreuse et chaleureuse, mise en scène comme un plat emblématique de la maison.'},
-          {name:'Filet de Bœuf', desc:'Une pièce noble, servie dans un esprit raffiné, pour une expérience à la fois simple et luxueuse.'},
-          {name:'Grillade Mixte', desc:'Un plat convivial et spectaculaire, idéal à partager dans l’atmosphère lounge du restaurant.'},
-          {name:'Pavé de Saumon', desc:'Une assiette élégante, équilibrée et contemporaine, pensée pour un public gourmet.'},
-          {name:'Assortiment de Fruits de Mer', desc:'Une proposition généreuse, fraîche et haut de gamme, parfaite pour les amateurs de mer.'},
-          {name:'Crevettes Panko', desc:'Croquant, finesse et gourmandise dans une assiette au rendu visuel premium.'},
-          {name:'Kamounia Poulpe', desc:'Un plat de caractère, riche en identité et en profondeur gustative.'}
-        ],
         gallery: [
           {title:'Ambiance du restaurant', kicker:'Atmosphère', src:'https://images.unsplash.com/photo-1529692236671-f1b7c6c5ec8d?auto=format&fit=crop&w=1400&q=80'},
           {title:'Terrasse élégante', kicker:'Terrasse', src:'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&fit=crop&w=1400&q=80'},
@@ -355,9 +349,7 @@
           document.addEventListener('DOMContentLoaded', () => {
             const io = new IntersectionObserver(entries => {
               entries.forEach(e => {
-                if(e.isIntersecting) {
-                  e.target.classList.add('show');
-                }
+                if(e.isIntersecting) e.target.classList.add('show');
               });
             }, {threshold: 0.05});
             document.querySelectorAll('.reveal').forEach(el => io.observe(el));
@@ -414,7 +406,7 @@
         {category:'Viandes & Volailles', name:'Grillade mixte', price:'48 DT', desc:'Le plat convivial par excellence.'},
         {category:'Viandes & Volailles', name:'Complet merguez', price:'32 DT', desc:'Simple et très populaire.'},
         {category:'Viandes & Volailles', name:'Côte de bœuf', price:'68 DT', desc:'Une pièce imposante et généreuse.'},
-        {category:'Viandes & Volailles', name:'Filet de bœuf', price:'66 DT', desc:'Noble, tendre et parfaitement premium.'},
+        {category:'Viandes & Volailles', name:'Filet de bœuf', price:'66 DT', desc:'Noble, tendre et perfectly premium.'},
         {category:'Viandes & Volailles', name:'Poulet grillé', price:'66 DT', desc:'Classique, équilibré et réconfortant.'},
         {category:'Viandes & Volailles', name:'Souris d\'agneau', price:'74 DT', desc:'Fondante, élégante et très gastronomique.'},
         {category:'Viandes & Volailles', name:'Mezza Terre & Mer (4 personnes)', price:'180 DT', desc:'Un grand format à partager, entre terre et mer.'},
@@ -433,6 +425,7 @@
       return {
         search: '',
         active: 'Tous',
+        limit: 9,
         categories: [...new Set(items.map(i => i.category))],
         items,
         get filtered(){
